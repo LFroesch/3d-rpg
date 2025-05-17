@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2rfiuuc23vpx"]
+
+[ext_resource type="Script" uid="uid://dutararcqhfoq" path="res://scenes/interactable/gatherable.gd" id="1_lmwj1"]
+[ext_resource type="PackedScene" uid="uid://c46dhvewnsi36" path="res://scenes/user_interface/trade_good_icon.tscn" id="2_r82e7"]
+[ext_resource type="PackedScene" uid="uid://bi2wlenpqvrjf" path="res://assets/Free Shrubs Flowers and Mushrooms 3D Low Poly Pack/fbx/_flower_1.fbx" id="2_x2umc"]
+[ext_resource type="Texture2D" uid="uid://b35on7qehm08w" path="res://assets/Free Shrubs Flowers and Mushrooms 3D Low Poly Pack/fbx/Ekfs_bush_map.png" id="3_x2umc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r82e7"]
+albedo_texture = ExtResource("3_x2umc")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r82e7"]
+points = PackedVector3Array(0.372703, 0.131454, 0.332831, -0.0461867, 0.317637, -0.30346, -0.309925, 0.426207, 0.115486, 0.233009, 0.628086, -0.117211, -0.325479, 0.022822, 0.146517, 0.496844, 0.0383943, 0.286252, 0.357149, 0.550473, 0.177613, -0.418609, 0.348657, -0.163724, 0.0778569, 0.069352, -0.148242, 0.378745, 0.489634, -0.149535, 0.558963, 0.0849866, 0.363927, 0.0313891, -0.00826031, -0.0396019, -0.335561, 0.199429, -0.139325, 0.48129, 0.472861, 0.00697671, -0.263457, 0.457289, -0.194755, 0.217552, 0.628086, 0.100003, -0.434163, 0.348657, 0.0534247, -0.294468, 0.426207, 0.131034, -0.185882, 0.503819, -0.00850594, -0.0151758, 0.286679, -0.30346, 0.558963, 0.053842, 0.332831, 0.359044, 0.415781, -0.132241, 0.450279, 0.0383943, 0.332831, -0.341033, 0.053842, 0.146517, -0.0461867, -0.00826031, 0.0378767, 0.248563, 0.178047, 0.301735, -0.0517062, 0.0174583, -0.0481881, 0.512398, 0.069352, 0.363927, 0.304395, 0.388213, -0.162, -0.341033, 0.0383943, 0.131034, 0.0624, 0.0383943, -0.117211, 0.48129, 0.472861, 0.0225247)
+
+[node name="LilyGatherable" type="StaticBody3D"]
+collision_layer = 3
+script = ExtResource("1_lmwj1")
+
+[node name="TradeGoodIcon2" parent="." instance=ExtResource("2_r82e7")]
+visible = false
+quantity = 2
+custom_name = "Lily"
+
+[node name="_flower_1" parent="." instance=ExtResource("2_x2umc")]
+
+[node name="flower_1" parent="_flower_1" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_r82e7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_r82e7")
+
+[editable path="_flower_1"]

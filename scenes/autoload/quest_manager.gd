@@ -118,7 +118,7 @@ var quests: Dictionary = {
 		"description": "Deliver the sealed letter to Farmer Fred. The King says his farm is somewhere through a cave outside of the village.",
 		"objectives": {
 			"talk_to": {
-				"target": "farmerfred"
+				"target": "Farmer Fred"
 			}
 		},
 		"rewards": {
@@ -139,7 +139,25 @@ var quests: Dictionary = {
 		},
 		"requires_turnin": true,
 		"repeatable": false
-	}
+	},
+	"gather_lilies": {
+	"title": "Healing Lilies",
+	"description": "The royal healer needs 5 healing lilies to prepare medicine. Gather them from all around the kingdom.",
+	"objectives": {
+		"collect_item": {
+			"item_type": "Lily",
+			"count": 5,
+			"current": 0
+		}
+	},
+	"rewards": {
+		"experience": 150,
+		"gold": 75,
+		"items": []
+	},
+	"requires_turnin": true,
+	"repeatable": true
+}
 }
 
 func _ready() -> void:

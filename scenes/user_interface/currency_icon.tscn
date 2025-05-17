@@ -11,5 +11,5 @@ value = 55
 [node name="TypeIcon" parent="." index="0"]
 texture = ExtResource("2_v1ex3")
 
-[node name="ItemLabel" parent="MarginContainer" index="1"]
+[node name="ItemLabel" parent="MarginContainer" index="2"]
 text = "Gold"

@@ -155,6 +155,16 @@ func create_item_from_data(item_data: Dictionary) -> ItemIcon:
 		shield.price = item_data.price
 		item_icon = shield
 	
+	elif item_data.type == "trade_good":
+		var trade_good = preload("res://scenes/user_interface/trade_good_icon.tscn").instantiate()
+		trade_good.good_type_enum = item_data.good_type_enum
+		trade_good.quantity = item_data.quantity
+		if item_data.has("custom_name"):
+			trade_good.custom_name = item_data.custom_name
+		# For shop items, this would be the buy price (full price)
+		trade_good.price = item_data.price 
+		item_icon = trade_good
+	
 	# Following your enemy.gd pattern for visibility
 	if item_icon:
 		item_icon.visible = true  # Make visible for shop display
@@ -191,18 +201,51 @@ func sell_item(item: ItemIcon) -> bool:
 	if player_inventory == null:
 		return false
 	
-	# Calculate sell price (50% of buy price)
-	var sell_price = int(item.price * 0.5)
-	
-	# Remove from inventory if it's equipped
-	var parent = item.get_parent()
-	if parent:
-		parent.remove_child(item)
-	
-	# Add gold
-	player_inventory.add_currency(sell_price)
-	
-	# Free the item
-	item.queue_free()
-	
-	return true
+	# Handle TradeGoodIcon specially
+	if item is TradeGoodIcon:
+		# Get the individual item price (not the stack price)
+		var base_price = 0
+		match item.good_type_enum:
+			TradeGoodIcon.trade_good_type.HERB: base_price = 4
+			TradeGoodIcon.trade_good_type.ORE: base_price = 6
+			TradeGoodIcon.trade_good_type.WOOD: base_price = 4
+			TradeGoodIcon.trade_good_type.LEATHER: base_price = 4
+		
+		# Calculate single item sell price (half of base price)
+		var single_item_sell_price = int(base_price / 2)
+		
+		# Add gold for one item
+		player_inventory.add_currency(single_item_sell_price)
+		
+		# Decrease quantity
+		item.quantity -= 1
+		item.stat_label.text = "x" + str(item.quantity)
+		
+		# Update price for remaining items
+		item.price = int(base_price * item.quantity) / 2
+		item.price_label.text = str(item.price) + "g"
+		
+		# If quantity is now 0, remove the item
+		if item.quantity <= 0:
+			var parent = item.get_parent()
+			if parent:
+				parent.remove_child(item)
+			item.queue_free()
+		
+		return true
+	else:
+		# For non-TradeGoodIcon items, use original logic
+		var sell_price = int(item.price * 0.5)
+		
+		# Remove from inventory if it's equipped
+		var parent = item.get_parent()
+		if parent:
+			parent.remove_child(item)
+		
+		# Add gold
+		player_inventory.add_currency(sell_price)
+		
+		# Free the item
+		item.queue_free()
+		
+		return true

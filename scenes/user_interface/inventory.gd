@@ -55,6 +55,41 @@ func _on_back_button_pressed() -> void:
 	get_parent().close_menu()
 
 func add_item(icon: ItemIcon) -> void:
+	# Special case for TradeGoodIcons - try to stack
+	if icon is TradeGoodIcon:
+		# Look for existing item with same type and name to stack
+		var stacked := false
+		for existing_item in item_grid.get_children():
+			if existing_item is TradeGoodIcon and existing_item.good_type_enum == icon.good_type_enum and existing_item.custom_name == icon.custom_name:
+				# Found matching item, add quantities
+				existing_item.quantity += icon.quantity
+				existing_item.stat_label.text = "x" + str(existing_item.quantity)
+				
+				# Update price using the same formula as in TradeGoodIcon
+				var base_price = 0
+				match existing_item.good_type_enum:
+					TradeGoodIcon.trade_good_type.HERB: base_price = 4
+					TradeGoodIcon.trade_good_type.ORE: base_price = 6
+					TradeGoodIcon.trade_good_type.WOOD: base_price = 4
+					TradeGoodIcon.trade_good_type.LEATHER: base_price = 4
+				
+				existing_item.price = int(base_price * existing_item.quantity) / 2
+				existing_item.price_label.text = str(existing_item.price) + "g"
+				
+				# Free the original icon since we've stacked it
+				icon.queue_free()
+				stacked = true
+				break
+		
+		# If not stacked, proceed with normal add
+		if !stacked:
+			add_item_normal(icon)
+	else:
+		# For non-stackable items, proceed with normal add
+		add_item_normal(icon)
+
+# Regular item adding logic, separated for clarity
+func add_item_normal(icon: ItemIcon) -> void:
 	for connection in icon.interact.get_connections():
 		icon.interact.disconnect(connection.callable)
 	var parent = icon.get_parent()
@@ -115,4 +150,3 @@ func load_items_from_persistent_data() -> void:
 		add_item(item)
 		interact(item)
 	gold = PersistentData.gold
-	

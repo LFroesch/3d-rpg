@@ -1,6 +1,8 @@
 ~ start
 if QuestManager.ready_for_turnin_quests.has("kill_bandits")
 	=> turnin_kill_bandits
+elif QuestManager.ready_for_turnin_quests.has("gather_lilies")
+	=> turnin_gather_lilies
 else
 	King: Welcome to the lands of Brynd!
 	=> talk_to_king
@@ -8,6 +10,20 @@ else
 ~ talk_to_king
 - What is there to do there?
 	King: Shops, quests, and more! Take a look around!
+	=> talk_to_king
+- Can you tell me about controls?
+	King: Sure! Your movement is your basic WASD/Arrow Keys or Joysticks.
+	King: To interact with objects you press E, or if its in an Interface, click on it.
+	King: For controller, that is A or X to click in an interface.
+	King: For combat, use your left click and right click, left is a quick attack.
+	King: While right click is a longer Area of Effect attack that can hit multiple nearby enemies.
+	King: This is replaced by the Left and Right triggers for controller.
+	King: To dash, use Shift or Y, and to heal use Middle Mouse Button or B
+	King: To open the Quest Panel hit Q or Right on the D-Pad.
+	King: To open your Inventory / Equipment Pane, hit tab or left on the D-Pad.
+	King: To open the main menu hit ~ or P or the menu button on your controller.
+	King: There is no saving in this demo currently so the menu button is just for exit game.
+	King: Have fun!
 	=> talk_to_king
 - Do you have any quests? 
 	King: Indeed I do. The kingdom always needs brave adventurers.
@@ -39,6 +55,18 @@ else
 			=> END
 		- Not right now
 			=> END
+	- Healing Lilies [if QuestManager.can_repeat_quest("gather_lilies")]
+		King: Our royal healer is running low on medicinal supplies.
+		King: She needs 5 healing lilies to prepare medicine for the sick.
+		King: These lilies grow in the meadows around the kingdom. Can you gather them?
+		- I'll gather the lilies
+			King: Thank you! The lilies have a distinctive appearance.
+			King: Tall green stems with white flowers on top.
+			King: Bring them back to me when you've collected all 5.
+			do QuestManager.start_quest("gather_lilies")
+			=> END
+		- Not right now
+			=> END
 	- Never mind
 		=> END
 - End the conversation 
@@ -50,4 +78,11 @@ King: More dialogue coming soon!
 King: Thank you! Here is your reward as promised.
 Reward: {{QuestManager.quests["kill_bandits"].rewards.experience}} exp | {{QuestManager.quests["kill_bandits"].rewards.gold}} coins.
 do QuestManager.complete_quest("kill_bandits")
+=> start
+
+~ turnin_gather_lilies
+King: Ah, you've collected all the healing lilies! The royal healer will be most pleased.
+King: These will help treat many of our sick citizens. Here's your reward.
+Reward: {{QuestManager.quests["gather_lilies"].rewards.experience}} exp | {{QuestManager.quests["gather_lilies"].rewards.gold}} coins.
+do QuestManager.complete_quest("gather_lilies")
 => start

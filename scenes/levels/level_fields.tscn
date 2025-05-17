@@ -1,10 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://i2dfmbn6jlx8"]
+[gd_scene load_steps=35 format=3 uid="uid://i2dfmbn6jlx8"]
 
 [ext_resource type="VoxelGIData" uid="uid://2d5ijv1t45kj" path="res://scenes/levels/gi_data/field_level_gi_data.tres" id="1_plsom"]
 [ext_resource type="PackedScene" uid="uid://vcvpv31byjkx" path="res://assets/Environment/Path_Cobblestone_Env_04.glb" id="2_qkng3"]
 [ext_resource type="PackedScene" uid="uid://rmchtxtwhbb0" path="res://assets/Environment/Path_Stepping_Stone_Env_01.glb" id="3_ckfc7"]
-[ext_resource type="PackedScene" uid="uid://bi2wlenpqvrjf" path="res://assets/Free Shrubs Flowers and Mushrooms 3D Low Poly Pack/fbx/_flower_1.fbx" id="6_dnwlx"]
-[ext_resource type="Texture2D" uid="uid://b35on7qehm08w" path="res://assets/Free Shrubs Flowers and Mushrooms 3D Low Poly Pack/fbx/Ekfs_bush_map.png" id="7_n8cb1"]
 [ext_resource type="PackedScene" uid="uid://bbk7mt5o6vqy4" path="res://assets/Environment/pinetree.glb" id="7_wr06i"]
 [ext_resource type="PackedScene" uid="uid://b4ffuvmylemfx" path="res://assets/Environment/Rock_Cliff_Env_03.glb" id="8_4ibku"]
 [ext_resource type="PackedScene" uid="uid://butqv7srl24ro" path="res://assets/Environment/log.glb" id="8_kcakc"]
@@ -24,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://5wa86lyuahc0" path="res://scenes/user_interface/weapon_icon.tscn" id="26_krc1n"]
 [ext_resource type="PackedScene" uid="uid://d25ehn3fqtr87" path="res://assets/Environment/camp.glb" id="29_ckfc7"]
 [ext_resource type="PackedScene" uid="uid://b4x18p5d1d52b" path="res://scenes/NPCs/farmer.tscn" id="29_kcakc"]
+[ext_resource type="PackedScene" uid="uid://c2rfiuuc23vpx" path="res://scenes/interactable/lily_gatherable.tscn" id="29_wr06i"]
 [ext_resource type="PackedScene" uid="uid://c6nyhdp0bnsty" path="res://scenes/user_interface/shield_icon.tscn" id="29_ynqav"]
 [ext_resource type="PackedScene" uid="uid://fbxxfcbhkmih" path="res://assets/Character/Gear/Tall_Shield.glb" id="30_0oxx3"]
 [ext_resource type="PackedScene" uid="uid://dhgyuurls55kk" path="res://scenes/user_interface/armor_icon.tscn" id="32_mjsqu"]
@@ -56,9 +55,6 @@ filter_baking_aabb = AABB(-25, 0, -22, 48, 1, 45)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2cq8"]
 albedo_color = Color(0.278431, 0.364706, 0.117647, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nijtg"]
-albedo_texture = ExtResource("7_n8cb1")
 
 [node name="LevelFields" type="Node3D"]
 
@@ -94,12 +90,6 @@ transform = Transform3D(-1, 0, 2.23517e-08, 0, 1, 0, -2.23517e-08, 0, -1, -13, 0
 
 [node name="Path_Stepping_Stone_Env_012" parent="NavigationRegion3D/Floor/FloorDecorations" instance=ExtResource("3_ckfc7")]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -15.8, 0.5, 1.9)
-
-[node name="_flower_1" parent="NavigationRegion3D/Floor" instance=ExtResource("6_dnwlx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 2.6)
-
-[node name="flower_1" parent="NavigationRegion3D/Floor/_flower_1" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_nijtg")
 
 [node name="Boundaries" type="Node3D" parent="NavigationRegion3D"]
 
@@ -374,9 +364,19 @@ type = "bandit2"
 
 [node name="Farmer" parent="." instance=ExtResource("29_kcakc")]
 transform = Transform3D(-1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, -1, -15.3, 0, 7.7)
-farmer_id = "farmerfred"
+farmer_id = "Farmer Fred"
 
 [node name="camp" parent="." instance=ExtResource("29_ckfc7")]
 transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 8.7, 0, -19.3)
 
-[editable path="NavigationRegion3D/Floor/_flower_1"]
+[node name="Gatherables" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12.1)
+
+[node name="LilyGatherable" parent="Gatherables" instance=ExtResource("29_wr06i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -1, -21.1)
+
+[node name="LilyGatherable2" parent="Gatherables" instance=ExtResource("29_wr06i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, -1, -15.1)
+
+[node name="LilyGatherable3" parent="Gatherables" instance=ExtResource("29_wr06i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, -1, 7)

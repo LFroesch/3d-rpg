@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bkjpp6gy3kmgy"]
+[gd_scene load_steps=30 format=3 uid="uid://bkjpp6gy3kmgy"]
 
 [ext_resource type="VoxelGIData" uid="uid://cijldoqrglrdv" path="res://scenes/levels/gi_data/castle_level_gi_data.tres" id="1_a6rdi"]
 [ext_resource type="PackedScene" uid="uid://rmchtxtwhbb0" path="res://assets/Environment/Path_Stepping_Stone_Env_01.glb" id="2_5rsna"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://q8to76543qo8" path="res://scenes/environment/clothesline.tscn" id="19_4xi05"]
 [ext_resource type="PackedScene" uid="uid://c8q2a1xpwqfdk" path="res://assets/Environment/Barrel_Wooden_Prop.glb" id="19_nm11r"]
 [ext_resource type="PackedScene" uid="uid://j6djkmd5frfr" path="res://scenes/NPCs/king.tscn" id="23_muty1"]
+[ext_resource type="PackedScene" uid="uid://c2rfiuuc23vpx" path="res://scenes/interactable/lily_gatherable.tscn" id="24_muty1"]
 [ext_resource type="PackedScene" uid="uid://ca52yf67sdsa2" path="res://scenes/NPCs/vendor.tscn" id="24_q8qgi"]
 [ext_resource type="PackedScene" uid="uid://dn5xaktnjl5g4" path="res://scenes/interactable/passage.tscn" id="29_l3e6b"]
 [ext_resource type="PackedScene" uid="uid://b04ihr446a3hq" path="res://scenes/player/player.tscn" id="30_hhevs"]
@@ -336,3 +337,18 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 [node name="Vendor" parent="NPCs" instance=ExtResource("24_q8qgi")]
 transform = Transform3D(-0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, -0.642788, 13.1, -1, -1.8)
 vendor_id = "vendor1"
+
+[node name="Gatherables" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12.1)
+
+[node name="LilyGatherable" parent="Gatherables" instance=ExtResource("24_muty1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -1, -8.1)
+
+[node name="LilyGatherable2" parent="Gatherables" instance=ExtResource("24_muty1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -1, -32.1)
+
+[node name="LilyGatherable3" parent="Gatherables" instance=ExtResource("24_muty1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -1, -24.1)
+
+[node name="LilyGatherable4" parent="Gatherables" instance=ExtResource("24_muty1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, 5.9)
