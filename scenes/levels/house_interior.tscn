@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://dij4f4ggi801y"]
+
+[ext_resource type="PackedScene" uid="uid://608iiq37tagu" path="res://assets/kaykit_dungeons/gltf/wall_scaffold.gltf" id="1_bqanp"]
+[ext_resource type="PackedScene" uid="uid://c3ftha0bhmq1v" path="res://assets/kaykit_dungeons/gltf/wall_doorway_scaffold.gltf" id="2_kforg"]
+[ext_resource type="PackedScene" uid="uid://b04ihr446a3hq" path="res://scenes/player/player.tscn" id="3_kforg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uc80v"]
+size = Vector3(16, 1, 10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qv1b4"]
+points = PackedVector3Array(-8, -0.5, -5, -8, 0.5, -5, 8, -0.5, -5, -8, -0.5, 5, -8, 0.5, 5, 8, 0.5, -5, 8, -0.5, 5, 8, 0.5, 5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uc80v"]
+sky_top_color = Color(0.132, 0.306167, 0.55, 1)
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_377w7"]
+sky_material = SubResource("ProceduralSkyMaterial_uc80v")
+
+[sub_resource type="Environment" id="Environment_qv1b4"]
+background_mode = 2
+sky = SubResource("Sky_377w7")
+tonemap_mode = 2
+glow_enabled = true
+glow_strength = 0.4
+glow_bloom = 0.5
+glow_blend_mode = 0
+
+[node name="HouseInterior" type="Node3D"]
+
+[node name="wall_scaffold2" parent="." instance=ExtResource("1_bqanp")]
+
+[node name="wall_scaffold3" parent="." instance=ExtResource("1_bqanp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="wall_doorway_scaffold2" parent="." instance=ExtResource("2_kforg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="Floor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.476585, 4.2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_uc80v")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_qv1b4")
+
+[node name="Player" parent="." instance=ExtResource("3_kforg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4, 1.42341, 2.6)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qv1b4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_blend_splits = true

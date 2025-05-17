@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://crbuleag3yje4"]
+
+[ext_resource type="PackedScene" uid="uid://baicfehslitmd" path="res://assets/free-medieval-props-3d-low-poly-pack/Fbx/Haystack_02.fbx" id="1_kq2ew"]
+[ext_resource type="Texture2D" uid="uid://o2vanbwynccq" path="res://assets/free-medieval-props-3d-low-poly-pack/Fbx/T_Medieval_ Props.png" id="2_s5kv0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xb6k4"]
+albedo_texture = ExtResource("2_s5kv0")
+
+[node name="SmallerHaystack" instance=ExtResource("1_kq2ew")]
+
+[node name="Haystack_02" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_xb6k4")

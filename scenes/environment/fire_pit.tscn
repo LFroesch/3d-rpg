@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnu1sqo3owuwi"]
+
+[ext_resource type="PackedScene" uid="uid://jyfokno2fomo" path="res://assets/Environment/Fire_Pit_Env.glb" id="1_e8y1l"]
+
+[sub_resource type="Gradient" id="Gradient_a2s28"]
+offsets = PackedFloat32Array(0.00438596, 0.5, 0.868421, 1)
+colors = PackedColorArray(0.9, 0, 0, 0.9, 0.9, 0.1, 0, 0.8, 0.7, 0.174558, 0, 0.728, 0.8, 0.204668, 0, 0.5)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i8cwl"]
+gradient = SubResource("Gradient_a2s28")
+
+[sub_resource type="Curve" id="Curve_qf1o0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.479537), -2.07706, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sp6bt"]
+curve = SubResource("Curve_qf1o0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oug8r"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 1, 0)
+damping_max = 0.2
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_sp6bt")
+color_ramp = SubResource("GradientTexture1D_i8cwl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e8y1l"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_1c681"]
+material = SubResource("StandardMaterial3D_e8y1l")
+radius = 0.1
+height = 0.2
+
+[node name="Fire_Pit" instance=ExtResource("1_e8y1l")]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.1, 0.5, -0.2)
+amount = 16
+lifetime = 1.5
+explosiveness = 0.6
+process_material = SubResource("ParticleProcessMaterial_oug8r")
+draw_pass_1 = SubResource("SphereMesh_1c681")

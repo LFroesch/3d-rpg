@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://cc1si2qwdj4ix"]
+
+[ext_resource type="Texture2D" uid="uid://cpyf5h8cslfdl" path="res://assets/UIAssets/Icons/spell_slot_empty.png" id="1_ffg38"]
+[ext_resource type="Texture2D" uid="uid://c4lv4nds7rxv6" path="res://assets/UIAssets/Icons/ItemPress.png" id="2_sbbsu"]
+[ext_resource type="Texture2D" uid="uid://xq4beymj74y0" path="res://assets/UIAssets/Icons/ItemHover.png" id="3_8chc7"]
+[ext_resource type="Texture2D" uid="uid://ba2k40n6quhfm" path="res://assets/UIAssets/Icons/armor_icon.png" id="4_ep5r0"]
+[ext_resource type="Script" uid="uid://b4rchc7mb5jep" path="res://scenes/user_interface/item_icon.gd" id="4_sbbsu"]
+[ext_resource type="FontFile" uid="uid://bri3xj4q5wgj3" path="res://assets/fonts/LibreCaslonText-Bold.ttf" id="5_p54rj"]
+[ext_resource type="FontFile" uid="uid://bl4v5ulvuoji7" path="res://assets/fonts/LibreCaslonText-Italic.ttf" id="6_1xkty"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_evyew"]
+font = ExtResource("5_p54rj")
+font_size = 18
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rvp65"]
+font = ExtResource("6_1xkty")
+font_color = Color(0.960784, 0.717647, 0.423529, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ItemIcon" type="TextureButton"]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 128.0
+offset_bottom = 128.0
+texture_normal = ExtResource("1_ffg38")
+texture_pressed = ExtResource("2_sbbsu")
+texture_hover = ExtResource("3_8chc7")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("4_sbbsu")
+
+[node name="TypeIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -45.0
+offset_right = 44.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ep5r0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="StatLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "+3"
+label_settings = SubResource("LabelSettings_evyew")
+horizontal_alignment = 2
+
+[node name="PriceLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "15g"
+label_settings = SubResource("LabelSettings_evyew")
+
+[node name="ItemLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "item name"
+label_settings = SubResource("LabelSettings_rvp65")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

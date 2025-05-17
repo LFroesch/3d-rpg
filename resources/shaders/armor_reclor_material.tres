@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://oiopwu4jk4o6"]
+
+[ext_resource type="Shader" uid="uid://3l7djpbh42hk" path="res://resources/shaders/armor_recolor.gdshader" id="1_w2yo0"]
+[ext_resource type="Texture2D" uid="uid://80ymak8qrpb3" path="res://assets/Character/CharacterRig_castle-colour-palette.png" id="2_4w434"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_w2yo0")
+shader_parameter/albedo_texture = ExtResource("2_4w434")
+shader_parameter/original_color1 = Color(0.137255, 0.164706, 0.203922, 1)
+shader_parameter/target_color1 = Color(0.241941, 0.377804, 0.231141, 1)
+shader_parameter/original_color2 = Color(0.294118, 0.113725, 0.105882, 1)
+shader_parameter/target_color2 = Color(0.208406, 0.125809, 0.214876, 1)
+shader_parameter/original_color3 = Color(0.592157, 0.603922, 0.623529, 1)
+shader_parameter/target_color3 = Color(0.185395, 0.391381, 0.185395, 1)
+shader_parameter/original_color4 = Color(0.299852, 0.32124, 0.350649, 1)
+shader_parameter/target_color4 = Color(0.0319865, 0.255608, 0.0319865, 1)
+shader_parameter/color_threshold = 0.115

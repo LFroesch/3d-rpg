@@ -1,0 +1,18 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cufnsrdqowsqx"]
+
+[ext_resource type="Texture2D" uid="uid://dqo6tm2s4q1c4" path="res://assets/UIAssets/Window/window_c.png" id="1_auob3"]
+
+[resource]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("1_auob3")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0

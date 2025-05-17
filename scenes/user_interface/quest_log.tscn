@@ -1,0 +1,140 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5473qjxdmblg"]
+
+[ext_resource type="Script" uid="uid://b7yv38w6ne288" path="res://scenes/user_interface/quest_log.gd" id="1_aj7bx"]
+[ext_resource type="Texture2D" uid="uid://4e6rnnnr4oov" path="res://assets/UIAssets/Window/window_header.png" id="2_c1iij"]
+[ext_resource type="FontFile" uid="uid://bri3xj4q5wgj3" path="res://assets/fonts/LibreCaslonText-Bold.ttf" id="3_ypbp2"]
+[ext_resource type="StyleBox" uid="uid://cufnsrdqowsqx" path="res://scenes/user_interface/ui_panel.tres" id="4_tkflv"]
+[ext_resource type="Texture2D" uid="uid://cp8amfr84omxi" path="res://assets/UIAssets/Button Small/button_small.png" id="5_3gnxr"]
+[ext_resource type="Texture2D" uid="uid://cvysa856dbwgq" path="res://assets/UIAssets/Button Small/button_small_press.png" id="6_inrb4"]
+[ext_resource type="Texture2D" uid="uid://bobnx37rcho1k" path="res://assets/UIAssets/Button Small/button_small_hover.png" id="7_vr02a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bevay"]
+font = ExtResource("3_ypbp2")
+font_size = 72
+
+[node name="QuestLog" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_aj7bx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HeaderTexture" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_c1iij")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HeaderTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quests"
+label_settings = SubResource("LabelSettings_bevay")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="QuestListPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_tkflv")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/QuestListPanel"]
+layout_mode = 2
+
+[node name="QuestContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/QuestListPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="QuestDetailsPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("4_tkflv")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/QuestDetailsPanel"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/QuestDetailsPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="QuestDetailsText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/QuestDetailsPanel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 22
+bbcode_enabled = true
+text = "Select a quest to view details."
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+focus_mode = 0
+texture_normal = ExtResource("5_3gnxr")
+texture_pressed = ExtResource("6_inrb4")
+texture_hover = ExtResource("7_vr02a")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

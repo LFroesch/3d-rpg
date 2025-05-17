@@ -1,0 +1,23 @@
+~ start
+if QuestManager.ready_for_turnin_quests.has("deliver_message")
+	=> turnin_deliver_message
+else
+	=> talk_to_vendor
+~ talk_to_vendor
+Vendor: [[Hi|Hello|Howdy]], welcome to my shop.
+- Buy / Sell
+	Vendor: [[Here's what I got|Here are my wares|Oh I've got a bit of this and a bit of that]]
+	do ShopManager.open_shop("vendor1")
+	=> END
+- Do you have any quests?
+	Vendor: Not at the moment
+- Start again => start
+- End the conversation => END
+Vendor: More dialogue coming soon!
+=> END
+	
+~ turnin_deliver_message
+Vendor: Thank you! Here is your reward as promised.
+Reward: {{QuestManager.quests["deliver_message"].rewards.experience}} exp | {{QuestManager.quests["deliver_message"].rewards.gold}} coins.
+do QuestManager.complete_quest("deliver_message")
+=> start

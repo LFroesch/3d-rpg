@@ -1,0 +1,43 @@
+~ start
+if QuestManager.ready_for_turnin_quests.has("find_fred")
+	=> turnin_find_fred
+elif QuestManager.ready_for_turnin_quests.has("more_bandits")
+	=> turnin_more_bandits
+else
+	=> talk_to_farmer_fred
+
+~ talk_to_farmer_fred
+Farmer Fred: [[Hi|Hello|Howdy]], welcome to my farm.
+- Do you have any quests?
+	Farmer Fred: Actually, I do need help. Bandits have been terrorizing my farm lately.
+	Farmer Fred: If you could clear out 5 of them, it would help me tremendously.
+	Farmer Fred: I'll reward you with {{QuestManager.quests["more_bandits"].rewards.gold}} gold for your trouble.
+	- I'll help clear out the bandits
+		Farmer Fred: Thank you! They're mostly around the fields to the north of here.
+		do QuestManager.start_quest("more_bandits")
+		=> END
+	- Maybe later
+		=> talk_to_farmer_fred
+- How is it out here? => ask_about_the_farm
+- End the conversation => END
+
+=> END
+
+~ ask_about_the_farm
+Farmer Fred: Oh its pretty nice, I keep to myself, farm my crops.
+Farmer Fred: But those bandits are something I tell ya..
+=> talk_to_farmer_fred
+
+~ turnin_find_fred
+Farmer Fred: The King sent you? Let me see that letter...
+Farmer Fred: Thank you for delivering this message. Here's your reward.
+Reward: {{QuestManager.quests["find_fred"].rewards.experience}} exp | {{QuestManager.quests["find_fred"].rewards.gold}} coins.
+do QuestManager.complete_quest("find_fred")
+=> start
+
+~ turnin_more_bandits
+Farmer Fred: You've dealt with those bandits? Wonderful!
+Farmer Fred: Here's the reward I promised you.
+Reward: {{QuestManager.quests["more_bandits"].rewards.experience}} exp | {{QuestManager.quests["more_bandits"].rewards.gold}} coins.
+do QuestManager.complete_quest("more_bandits")
+=> start

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dyrqm540au8xe"
+path="res://.godot/imported/farmer_fred.dialogue-0582cc3986bd8b308a89824fce030392.tres"
+
+[deps]
+
+source_file="res://dialogue/conversations/farmer_fred.dialogue"
+dest_files=["res://.godot/imported/farmer_fred.dialogue-0582cc3986bd8b308a89824fce030392.tres"]
+
+[params]
+
+defaults=true

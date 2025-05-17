@@ -1,0 +1,182 @@
+[gd_scene load_steps=12 format=3 uid="uid://b0d4rhb6r2gu"]
+
+[ext_resource type="Script" uid="uid://bbxqhmlcikfr" path="res://scenes/user_interface/shop_panel.gd" id="1_sh0p4"]
+[ext_resource type="Texture2D" uid="uid://4e6rnnnr4oov" path="res://assets/UIAssets/Window/window_header.png" id="2_e4th1"]
+[ext_resource type="FontFile" uid="uid://bri3xj4q5wgj3" path="res://assets/fonts/LibreCaslonText-Bold.ttf" id="3_2qtia"]
+[ext_resource type="StyleBox" uid="uid://cufnsrdqowsqx" path="res://scenes/user_interface/ui_panel.tres" id="4_ynqn1"]
+[ext_resource type="Texture2D" uid="uid://cp8amfr84omxi" path="res://assets/UIAssets/Button Small/button_small.png" id="5_8ykt2"]
+[ext_resource type="Texture2D" uid="uid://cvysa856dbwgq" path="res://assets/UIAssets/Button Small/button_small_press.png" id="6_abtku"]
+[ext_resource type="Texture2D" uid="uid://bobnx37rcho1k" path="res://assets/UIAssets/Button Small/button_small_hover.png" id="7_l8m5l"]
+[ext_resource type="Texture2D" uid="uid://ctoi2wf3n2j3n" path="res://assets/UIAssets/Window/NumberFrame.png" id="8_xjuv2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bevay"]
+font = ExtResource("3_2qtia")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_0j3jy"]
+font = ExtResource("3_2qtia")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_r3uxx"]
+font = ExtResource("3_2qtia")
+font_size = 48
+
+[node name="ShopPanel" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_sh0p4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HeaderTexture" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_e4th1")
+stretch_mode = 5
+
+[node name="ShopNameLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderTexture"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Shop of Vendor Name"
+label_settings = SubResource("LabelSettings_bevay")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 200
+
+[node name="BuyPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("4_ynqn1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/BuyPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/BuyPanel/VBoxContainer"]
+layout_mode = 2
+text = "Buy"
+label_settings = SubResource("LabelSettings_0j3jy")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/BuyPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/BuyPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BuyContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/BuyPanel/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+columns = 4
+
+[node name="SellPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("4_ynqn1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SellPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SellPanel/VBoxContainer"]
+layout_mode = 2
+text = "Sell"
+label_settings = SubResource("LabelSettings_r3uxx")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/SellPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SellPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SellContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SellPanel/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+columns = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GoldFrame" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("8_xjuv2")
+
+[node name="PlayerGoldLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/GoldFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0g"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+focus_mode = 0
+texture_normal = ExtResource("5_8ykt2")
+texture_pressed = ExtResource("6_abtku")
+texture_hover = ExtResource("7_l8m5l")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]

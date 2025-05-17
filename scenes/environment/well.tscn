@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbndi8424tv0m"]
+
+[ext_resource type="PackedScene" uid="uid://clmsnmk0kmxcl" path="res://assets/free-medieval-props-3d-low-poly-pack/Fbx/Well.fbx" id="1_kywgx"]
+[ext_resource type="Texture2D" uid="uid://o2vanbwynccq" path="res://assets/free-medieval-props-3d-low-poly-pack/Fbx/T_Medieval_ Props.png" id="2_rto06"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gm4sd"]
+albedo_texture = ExtResource("2_rto06")
+
+[node name="Well" instance=ExtResource("1_kywgx")]
+
+[node name="Well" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gm4sd")

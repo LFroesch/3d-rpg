@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw5cs1r1yy10r"]
+
+[ext_resource type="Script" uid="uid://cv2g85cum0q4h" path="res://scenes/user_interface/enemy_health_bar.gd" id="1_fkt7b"]
+[ext_resource type="Script" uid="uid://b17s31esiv6we" path="res://scenes/user_interface/health_bar.gd" id="2_ykc5d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqfsl"]
+bg_color = Color(0.94902, 0.12549, 0.12549, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlsyd"]
+bg_color = Color(0.0941176, 0.862745, 0.0980392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3u7sq"]
+viewport_path = NodePath("SubViewport")
+
+[node name="HealthBar3D" type="Node3D"]
+script = ExtResource("1_fkt7b")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(120, 20)
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport"]
+offset_right = 120.0
+offset_bottom = 20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_oqfsl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tlsyd")
+value = 100.0
+show_percentage = false
+script = ExtResource("2_ykc5d")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = SubResource("ViewportTexture_3u7sq")

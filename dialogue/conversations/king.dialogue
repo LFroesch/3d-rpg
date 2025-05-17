@@ -1,0 +1,53 @@
+~ start
+if QuestManager.ready_for_turnin_quests.has("kill_bandits")
+	=> turnin_kill_bandits
+else
+	King: Welcome to the lands of Brynd!
+	=> talk_to_king
+
+~ talk_to_king
+- What is there to do there?
+	King: Shops, quests, and more! Take a look around!
+	=> talk_to_king
+- Do you have any quests? 
+	King: Indeed I do. The kingdom always needs brave adventurers.
+	- Bandits! [if QuestManager.can_repeat_quest("kill_bandits")] 
+		King: The bandits in the Western Forest have been attacking travelers.
+		King: Kill 5 bandits and you'll be rewarded with {{QuestManager.quests["kill_bandits"].rewards.gold}} gold!
+		- I'll take this quest! 
+			King: Excellent! The Western Forest is just beyond the village. Good hunting!
+			do QuestManager.start_quest("kill_bandits")
+			=> END
+		- I'll think about it
+			=> END
+	- Message Delivery [if QuestManager.can_repeat_quest("deliver_message")]
+		King: I have a message for the Vendor.
+		King: Deliver it for a reward of {{QuestManager.quests["deliver_message"].rewards.gold}} gold!
+		- I'll deliver your message
+			King: Thank you! The Vendor is by his house in this village.
+			do QuestManager.start_quest("deliver_message")
+			=> END
+		- Not interested
+			=> END
+	- Find Farmer Fred [if QuestManager.can_repeat_quest("find_fred")]
+		King: I need someone to deliver an important message to Farmer Fred.
+		King: His farm is located outside the village, through a cave in the hills.
+		King: He'll reward you for delivering this letter to him.
+		- I'll find Farmer Fred
+			King: Thank you! Be careful on your journey, the path can be dangerous.
+			do QuestManager.start_quest("find_fred")
+			=> END
+		- Not right now
+			=> END
+	- Never mind
+		=> END
+- End the conversation 
+	=> END
+King: More dialogue coming soon!
+=> END
+
+~ turnin_kill_bandits
+King: Thank you! Here is your reward as promised.
+Reward: {{QuestManager.quests["kill_bandits"].rewards.experience}} exp | {{QuestManager.quests["kill_bandits"].rewards.gold}} coins.
+do QuestManager.complete_quest("kill_bandits")
+=> start

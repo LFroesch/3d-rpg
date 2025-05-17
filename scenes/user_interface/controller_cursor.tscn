@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmmmy51gtijpg"]
+
+[ext_resource type="Script" uid="uid://ca0c3qjxx2v3v" path="res://scenes/user_interface/controller_mouse_cursor.gd" id="1_0ti1m"]
+
+[node name="ControllerCursor" type="Node"]
+process_mode = 3
+script = ExtResource("1_0ti1m")
