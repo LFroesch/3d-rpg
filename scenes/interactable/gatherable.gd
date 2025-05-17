@@ -1,14 +1,14 @@
 extends LootContainer
 class_name Gatherable
 
-@export var gatherable_type: String = "Herb"  # For quest tracking
-@export var display_name: String = "Herb"  # For display in inventory
+@export var gatherable_type: String = "Lily"  # For quest tracking
+@export var display_name: String = "Lily"  # For display in inventory
 @export var min_quantity: int = 1
 @export var max_quantity: int = 3
 @export var randomize_quantity: bool = true
 
-@onready var mesh_instance: MeshInstance3D = $_flower_1/flower_1
-@onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var mesh_instance: MeshInstance3D
+@onready var collision_shape: CollisionShape3D
 
 var is_collected: bool = false
 

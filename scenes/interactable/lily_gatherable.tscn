@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c2rfiuuc23vpx"]
 
-[ext_resource type="Script" uid="uid://dutararcqhfoq" path="res://scenes/interactable/gatherable.gd" id="1_lmwj1"]
+[ext_resource type="Script" uid="uid://b2w6i83bj8yih" path="res://scenes/interactable/lily_gatherable.gd" id="1_r82e7"]
 [ext_resource type="PackedScene" uid="uid://c46dhvewnsi36" path="res://scenes/user_interface/trade_good_icon.tscn" id="2_r82e7"]
 [ext_resource type="PackedScene" uid="uid://bi2wlenpqvrjf" path="res://assets/Free Shrubs Flowers and Mushrooms 3D Low Poly Pack/fbx/_flower_1.fbx" id="2_x2umc"]
 [ext_resource type="Texture2D" uid="uid://b35on7qehm08w" path="res://assets/Free Shrubs Flowers and Mushrooms 3D Low Poly Pack/fbx/Ekfs_bush_map.png" id="3_x2umc"]
@@ -13,11 +13,10 @@ points = PackedVector3Array(0.372703, 0.131454, 0.332831, -0.0461867, 0.317637, 
 
 [node name="LilyGatherable" type="StaticBody3D"]
 collision_layer = 3
-script = ExtResource("1_lmwj1")
+script = ExtResource("1_r82e7")
 
 [node name="TradeGoodIcon2" parent="." instance=ExtResource("2_r82e7")]
 visible = false
-quantity = 2
 custom_name = "Lily"
 
 [node name="_flower_1" parent="." instance=ExtResource("2_x2umc")]
